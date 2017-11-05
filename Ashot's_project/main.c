@@ -60,14 +60,14 @@ ISR (TIMER2_COMPA_vect)
 	{
 		a=OFF;
 
-		PORTB|=(1<< PB0);
-		
+		//PORTB|=(1<< PB0);
+		motor_1_ON;
 
 		if (b!=0)
 		{
 			if(j1==0)
 			{
-				PORTB^=(1<< PB1 );
+				motor_1_Inverse;
 				i1++;
 
 				/*************/
@@ -101,19 +101,26 @@ ISR (TIMER2_COMPA_vect)
 				i1=0;
 				b--;
 				
-				PORTB &= 0xFC; //&=(0<< PB1);
-			//	PORTB &=(0<< PB0);
-				PORTB ^=0x04;//(1<< PB2);
+				//PORTB &= 0xFC; //&=(0<< PB1);
+				motor_1_signal_OFF;
+				//PORTB &=(0<< PB0);
+				motor_1_OFF;
+				//PORTB ^=0x04;//(1<< PB2);
+				motor_1_dir_inverse;
 				_delay_ms(100);
-				PORTB|=0x01;//(1<< PB0);
-				
+
+
+
+				//PORTB|=0x01;//(1<< PB0);
+				motor_1_ON;
 			}
 		}
 
 		else
 		{
 			PORTB|=0x04;//(1<< PB2);
-			PORTB&=0xFE;//(0<< PB0);
+			//PORTB&=0xFE;//(0<< PB0);
+			motor_1_OFF;
 			battom1=OFF;
 			battom0=ON;
 			j0=0;
@@ -176,14 +183,14 @@ ISR (TIMER0_COMPA_vect)
 
 ISR(INT1_vect)
 {
-	
-	
 	u= 0x00;
 	a=OFF;
 	battom1=OFF;
 	battom0=OFF;
 	PORTD&=0x7F;
-	PORTB&=0xFE;
+	//PORTB&=0xFE;
+	motor_1_OFF;
+
 	PORTB^=0x20;
 
 	e=0x08 & PORTD;
@@ -193,14 +200,16 @@ ISR(INT1_vect)
 		w= 0x10 & PIND;
 		while(w!=0)//PIND4==0x10
 		{ 
-			PORTB|=0x01;
-
-			PORTB^=0x02;//(1<< PB1 );
+			//PORTB|=0x01;
+			motor_1_ON;
+			//PORTB^=0x02;//(1<< PB1 );
+			motor_1_Inverse;
 			_delay_us(500);
 							
 		}
 			
-		PORTB&=0xFE;//(0<< PB0);
+		//PORTB&=0xFE;//(0<< PB0);
+		motor_1_OFF;
 		r=0x20 & PIND;
 		while(r!=0)
 		{
@@ -241,8 +250,8 @@ int main(void)
 
 
 	DDRB=(1<<DDB1)|(1<<DDB0)|(1<<DDB2)|(1<<DDB5);
-	PORTB=(1<< PB2)|(1<<PB5);
-
+	//PORTB=(1<< PB2)|(1<<PB5);
+	motor_1_dir_on;
 	PORTD=0x00;
 	DDRD=(1<<DDD7)|(1<<DDD6);
 	//PORTD=(1<<PORTD3);

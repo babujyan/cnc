@@ -5,7 +5,8 @@
  * Author : Hrach
  */ 
 
-
+ typedef int bool;
+ enum { false, true };
 
 #include "defines.h"
 #include "functions.h"
@@ -199,11 +200,10 @@ ISR(INT1_vect)
 	//PORTB&=0xFE;
 	motor_1_OFF;
 
-	PORTB^=0x20;
 
 	//manual_mode=0x08 & PORTD;
-	manual_mode_check;
-	while(manual_mode==ON)//)PD3
+	manual_mode=manual_mode_check;
+	while(manual_mode_check==OFF)//)PD3//inverse logic should be ==ON
 	{
 		
 		while(manual_mode_motor_1_on_check!=OFF)//PIND4==0x10 check if the flag is on
@@ -239,7 +239,7 @@ ISR(INT1_vect)
 		motor_2_OFF;
 		motor_2_signal_OFF;
 
-		manual_mode_check;
+		//manual_mode=manual_mode_check;
 	}
 	AUTOMATIC_state=ON;
 

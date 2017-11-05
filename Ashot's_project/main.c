@@ -28,7 +28,7 @@ unsigned int	c;
 unsigned char	Nuber_of_operetions;
 unsigned char	u;
 unsigned char	w;
-unsigned char	e;
+unsigned char	manual_mode;
 unsigned char	r;
 //ISR (INT0_vect)
 //{
@@ -189,7 +189,7 @@ ISR (TIMER0_COMPA_vect)
 
 ISR(INT1_vect)
 {
-	u= 0x00;
+	//u= 0x00;
 	a=OFF;
 	battom1=OFF;
 	battom0=OFF;
@@ -201,8 +201,8 @@ ISR(INT1_vect)
 
 	PORTB^=0x20;
 
-	e=0x08 & PORTD;
-	while(e==0)//)PD3
+	manual_mode=0x08 & PORTD;
+	while(manual_mode==OFF)//)PD3
 	{
 
 		w= 0x10 & PIND;
@@ -213,12 +213,13 @@ ISR(INT1_vect)
 			//PORTB^=0x02;//(1<< PB1 );
 			motor_1_Inverse;
 			_delay_us(500);
-							
+			w= 0x10 & PIND;				
 		}
 			
 		//PORTB&=0xFE;//(0<< PB0);
 		motor_1_OFF;
 		motor_1_signal_OFF;
+
 		r=0x20 & PIND;
 		while(r!=0)
 		{
@@ -231,12 +232,14 @@ ISR(INT1_vect)
 				_delay_ms(5);
 			}
 
+			r=0x20 & PIND;
 		}
 		//PORTD&=0x7F;
 		motor_2_OFF;
 		motor_2_signal_OFF;
 
-		}
+		manual_mode_check;
+	}
 	a=ON;
 
 

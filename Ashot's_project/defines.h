@@ -25,6 +25,6 @@
 	#define motor_2_ON sbi(PORTD,PD7)//digital 7
 	#define motor_2_OFF cbi(PORTD,PD7)
 
-
+	#define manual_mode_check 	((manual_mode=0x08 & PORTD))
 
 #endif //DEFINES

@@ -250,7 +250,7 @@ ISR (TIMER2_COMPA_vect)
  162:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <j1>
 			}
 
-			if(i1==12000)
+			if(i1==motor_1_work_time)
  166:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <i1>
  16a:	90 91 16 01 	lds	r25, 0x0116	; 0x800116 <i1+0x1>
  16e:	80 3e       	cpi	r24, 0xE0	; 224
@@ -323,7 +323,7 @@ ISR (TIMER2_COMPA_vect)
  1c4:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <j0>
 			//b=Nuber_of_operetions;
 			shpindel_path_counter=shpindel_path_counter_VAR;
- 1c8:	84 e0       	ldi	r24, 0x04	; 4
+ 1c8:	82 e0       	ldi	r24, 0x02	; 2
  1ca:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <shpindel_path_counter>
 		}
 	}
@@ -373,19 +373,20 @@ ISR (TIMER0_COMPA_vect)
  20a:	81 e0       	ldi	r24, 0x01	; 1
  20c:	89 27       	eor	r24, r25
  20e:	85 b9       	out	0x05, r24	; 5
-			i0++;
- 210:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <i0>
- 214:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <i0+0x1>
- 218:	01 96       	adiw	r24, 0x01	; 1
- 21a:	90 93 11 01 	sts	0x0111, r25	; 0x800111 <i0+0x1>
- 21e:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <i0>
 			j0=motor_2_code_hz;
- 222:	81 e3       	ldi	r24, 0x31	; 49
- 224:	90 e0       	ldi	r25, 0x00	; 0
- 226:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <j0+0x1>
- 22a:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <j0>
+ 210:	81 e3       	ldi	r24, 0x31	; 49
+ 212:	90 e0       	ldi	r25, 0x00	; 0
+ 214:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <j0+0x1>
+ 218:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <j0>
+
+			i0++;
+ 21c:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <i0>
+ 220:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <i0+0x1>
+ 224:	01 96       	adiw	r24, 0x01	; 1
+ 226:	90 93 11 01 	sts	0x0111, r25	; 0x800111 <i0+0x1>
+ 22a:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <i0>
  22e:	05 c0       	rjmp	.+10     	; 0x23a <__vector_14+0x5c>
-		}
+			}
 
 		else
 		{
@@ -409,7 +410,7 @@ ISR (TIMER0_COMPA_vect)
  254:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <battom0>
 			
 			//PORTD&=(0<< PD7);
-			motor_2_OFF;
+			motor_2_OFF; 
  258:	29 98       	cbi	0x05, 1	; 5
 			//PORTD^=(0<< PD6);
 			//motor_2_Inverse;
@@ -432,9 +433,9 @@ ISR (TIMER0_COMPA_vect)
  27c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
 		}
 
-			if (motor_2_counter_checker == 120)
+			if (motor_2_counter_checker == 2)
  280:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 284:	88 37       	cpi	r24, 0x78	; 120
+ 284:	82 30       	cpi	r24, 0x02	; 2
  286:	a9 f4       	brne	.+42     	; 0x2b2 <__vector_14+0xd4>
 			{
 				led = led_check; //6 pd6 // pinb3 pin 11
@@ -467,7 +468,7 @@ ISR (TIMER0_COMPA_vect)
  2a0:	80 74       	andi	r24, 0x40	; 64
  2a2:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <led>
 
-			if (motor_2_counter_checker == 120)
+			if (motor_2_counter_checker == 2)
 			{
 				led = led_check; //6 pd6 // pinb3 pin 11
 
@@ -776,7 +777,7 @@ int main(void)
  3d2:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <j1>
 
 	shpindel_path_counter=shpindel_path_counter_VAR;
- 3d6:	84 e0       	ldi	r24, 0x04	; 4
+ 3d6:	82 e0       	ldi	r24, 0x02	; 2
  3d8:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <shpindel_path_counter>
 
 	AUTOMATIC_state=ON;

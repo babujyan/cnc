@@ -80,7 +80,7 @@ ISR (TIMER2_COMPA_vect)
 				j1--;
 			}
 
-			if(i1==12000)
+			if(i1==motor_1_work_time)
 			{
 				i1=0;
 				shpindel_path_counter--;
@@ -128,9 +128,10 @@ ISR (TIMER0_COMPA_vect)
 		{
 			//PORTD^=(1<< PD6 );
 			motor_2_Inverse;
-			i0++;
 			j0=motor_2_code_hz;
-		}
+
+			i0++;
+			}
 
 		else
 		{
@@ -142,7 +143,7 @@ ISR (TIMER0_COMPA_vect)
 			battom0=OFF;
 			
 			//PORTD&=(0<< PD7);
-			motor_2_OFF;
+			motor_2_OFF; 
 			//PORTD^=(0<< PD6);
 			//motor_2_Inverse;
 			motor_2_signal_OFF;
@@ -152,7 +153,7 @@ ISR (TIMER0_COMPA_vect)
 			motor_2_counter_checker++;
 		}
 
-			if (motor_2_counter_checker == 120)
+			if (motor_2_counter_checker == 2)
 			{
 				led = led_check; //6 pd6 // pinb3 pin 11
 

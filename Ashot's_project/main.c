@@ -269,8 +269,9 @@ int main(void)
 	//DDRB=(1<<DDB1)|(1<<DDB0)|(1<<DDB2)|(1<<DDB5);
 	//PORTB=(1<< PB2)|(1<<PB5);
 	motor_1_dir_on;
-	PORTD=0x00;
-	DDRD=(1<<DDD7)|(1<<DDD6);
+	motor_2_freq_PORT=0x00;//bla bla bla pull up stuff
+	sbi(motor_2_freq_DDR,motor_2_freq_DDR_pin);
+	sbi(motor_2_ON_OFF_DDR,motor_2_ON_OFF_DDR_pin);
 	//PORTD=(1<<PORTD3);
 	
 

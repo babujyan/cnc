@@ -35,6 +35,12 @@
 	#define motor_1_dir_on sbi(motor_1_dir_PORT,motor_1_dir_pin)//digital 10
 	#define motor_1_dir_inverse motor_1_dir_PORT^=(1<< motor_1_dir_pin)
 	/*--------------motor 2 pin setup-----------*/
+	#define motor_2_freq_DDR	DDRD
+	#define motor_2_ON_OFF_DDR	DDRD
+				  
+	#define motor_2_freq_DDR_pin	DDD6
+	#define motor_2_ON_OFF_DDR_pin	DDD7
+
 	#define motor_2_freq_PORT	PORTD
 	#define motor_2_ON_OFF_PORT PORTD
 				  

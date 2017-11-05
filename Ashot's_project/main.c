@@ -15,8 +15,6 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-unsigned int	block;
-unsigned int	h;
 unsigned int	ADC_value;
 unsigned int	battom0;
 unsigned int	i0;
@@ -24,7 +22,6 @@ unsigned int	j0;
 unsigned int 	battom1;
 unsigned int 	i1;
 unsigned int 	j1;
-unsigned int	led;
 unsigned char	a;
 unsigned char	b;
 unsigned int	c;
@@ -33,8 +30,6 @@ unsigned char	u;
 unsigned char	w;
 unsigned char	e;
 unsigned char	r;
-
-
 //ISR (INT0_vect)
 //{
 	//PORTB|=(1<< PB0);
@@ -49,115 +44,82 @@ unsigned char	r;
 //}
 
 ISR (INT0_vect)
-{
-	block = 0x02 & PORTD;
-	if(block==OFF)
+{	
+	if(a==ON)
 	{
-		if(a==ON)
-		{
-			battom1=ON;
-			j1=0;
-			c=40960;//2560;
-		}
-	block = 0x02 & PORTD;
-	}
-	else 
-	{
-		a=OFF;
-		battom1=OFF;
-		battom0=OFF;
-
+		battom1=ON;
+		j1=0;
+		c=40960;//2560;
 	}
 }
 
 ISR (TIMER2_COMPA_vect) 
 {
-	block = 0x02 & PORTD;
-	if(block==OFF)
+	
+	if(battom1==ON)
 	{
-		if(battom1==ON)
-		{
-			a=OFF;
+		a=OFF;
 
-			PORTB|=(1<< PB0);
+		PORTB|=(1<< PB0);
 		
 
-			if (b!=0)
+		if (b!=0)
+		{
+			if(j1==0)
 			{
-				if(j1==0)
+				PORTB^=(1<< PB1 );
+				i1++;
+
+				/*************/
+				// hin code 
+
+			//	j1=4;
+
+				/*******************************/
+				/*==== >> avelacrac mas << ====*/
+
+				if(c!=5)
 				{
-					PORTB^=(1<< PB1 );
-					i1++;
-
-					/*************/
-					// hin code 
-
-				//	j1=4;
-
-					/*******************************/
-					/*==== >> avelacrac mas << ====*/
-
-					if(c>=8)
-					{
-						c=c/2;
-						j1=c; 
-					}
-					else
-						j1=4;//1khz generation 6sc 10-200ms wait 
-
-					/*==== >> avelacrac masi verj << ====*/
-					/*************************************/
-
+				c=c/2;
+				j1=c; 
 				}
-
 				else
-				{
-					j1--;
-				}
+				j1=4;//1khz generation 6sc 10-200ms wait 
 
-				block = 0x02 & PORTD;
-				if(block==OFF)
-				{
-					if(i1==12000)
-					{
-						i1=0;
-						b--;
-				
-						PORTB &= 0xFC; //&=(0<< PB1);
-					//	PORTB &=(0<< PB0);
-						PORTB ^=0x04;//(1<< PB2);
-						_delay_ms(100);
-						PORTB|=0x01;//(1<< PB0);
-				
-					}
+				/*==== >> avelacrac masi verj << ====*/
+				/*************************************/
 
-				block = 0x02 & PORTD;
-					
-				}
 			}
 
 			else
 			{
-				PORTB|=0x04;//(1<< PB2);
-				PORTB&=0xFE;//(0<< PB0);
-				battom1=OFF;
-				battom0=ON;
-				j0=0;
-				//b=Nuber_of_operetions;
-				b=2;
+				j1--;
+			}
+
+			if(i1==12000)
+			{
+				i1=0;
+				b--;
+				
+				PORTB &= 0xFC; //&=(0<< PB1);
+			//	PORTB &=(0<< PB0);
+				PORTB ^=0x04;//(1<< PB2);
+				_delay_ms(100);
+				PORTB|=0x01;//(1<< PB0);
+				
 			}
 		}
 
-	block = 0x02 & PORTD;
-
-	}
-
-	else
-	{
-		a=OFF;
-		battom1=OFF;
-		battom0=OFF;
-
+		else
+		{
+			PORTB|=0x04;//(1<< PB2);
+			PORTB&=0xFE;//(0<< PB0);
+			battom1=OFF;
+			battom0=ON;
+			j0=0;
+			//b=Nuber_of_operetions;
+			b=4;
+		}
 	}
 
 }	
@@ -166,65 +128,31 @@ ISR (TIMER2_COMPA_vect)
 
 ISR (TIMER0_COMPA_vect)
 {
-	block = 0x02 & PORTD;
-	if(block==OFF)
+	if(battom0==ON)
 	{
-		if(battom0==ON)
+		PORTD|=(1<< PD7);
+
+		if(j0==0)
 		{
-			PORTD|=(1<< PD7);
-
-			if(j0==0)
-			{
-				PORTD^=(1<< PD6 );
-				i0++;
-				j0=50;
-			}
-
-			else
-			{
-				j0--;
-			}
-			if(i0==200)
-			{
-				led = 0x08 & PINB; // pinb3 pin 11
-
-				while(led==1)
-				{
-					PORTD|=0x80;//(1<< PD7);
-					PORTD^=0x40;//(1<< PD6 );////////////////////////////////
-					_delay_ms(5);
-
-					led = 0x08 & PINB;
-					block = 0x02 & PORTD;
-					if(block==OFF)
-					{
-						break;
-					}
-
-					
-				}
-				PORTB&=0xFC;
-
-				i0=0;
-				battom0=OFF;
-			//	PORTD&=(0<< PD7);
-			//	PORTD^=(0<< PD6);
-				a=ON;
-				battom1=ON;
-				j1=0;
-				///////////////////////
-
-			}
-
+			PORTD^=(1<< PD6 );
+			i0++;
+			j0=50;
 		}
 
-	block = 0x02 & PORTD;
-	}
-	else
-	{
-		a=OFF;
-		battom1=OFF;
-		battom0=OFF;
+		else
+		{
+			j0--;
+		}
+		if(i0==200)
+		{
+			i0=0;
+			battom0=OFF;
+			PORTD&=(0<< PD7);
+			PORTD^=(0<< PD6);
+			a=ON;
+			battom1=ON;
+			j1=0;
+		}
 
 	}
 
@@ -258,101 +186,42 @@ ISR(INT1_vect)
 	PORTB&=0xFE;
 	PORTB^=0x20;
 
-	block = 0x02 & PORTD;
-	if(block==OFF)
+	e=0x08 & PORTD;
+	while(e==0)//)PD3
 	{
-		e=0x08 & PORTD;
-		while(e==0)//)PD3
-		{
-			//PORTB^=0x20;//(1<<PB5);
-			//_delay_ms(200);
-			block = 0x02 & PORTD;
-			if(block==OFF)
-			{
-				w= 0x10 & PIND;
-				while(w!=0)//PIND4==0x10
-				{ 
-					PORTB|=0x01;
 
-					PORTB^=0x02;//(1<< PB1 );
-					_delay_us(500);
-					w= 0x10 & PIND;
-					block = 0x02 & PORTD;
-					if(block==OFF)
-					{
-						break;
-					}
+		w= 0x10 & PIND;
+		while(w!=0)//PIND4==0x10
+		{ 
+			PORTB|=0x01;
+
+			PORTB^=0x02;//(1<< PB1 );
+			_delay_us(500);
 							
-				}
-			}
+		}
 			
-			PORTB&=0xFE;//(0<< PB0);
-			r=0x20 & PIND;
-			while(r!=0)
+		PORTB&=0xFE;//(0<< PB0);
+		r=0x20 & PIND;
+		while(r!=0)
+		{
+			for(u=1;u<=200;u++)
 			{
-				for(u=1;u<=200;u++)
-				{
-					PORTD|=0x80;//(1<< PD7);
-					PORTD^=0x40;//(1<< PD6 );
-					_delay_ms(5);
-					r=0x20 & PIND;
-					block = 0x02 & PORTD;
-					if(block==OFF)
-					{
-						break;
-					}
-				}
-
+				PORTD|=0x80;//(1<< PD7);
+				PORTD^=0x40;//(1<< PD6 );
+				_delay_ms(5);
 			}
-			PORTD&=0x7F;
-		
-
-		
-	
-		/////////////////////////////
-
-			h = 0x10 & PINB;
-			while(h==1)
-			{
-				led = 0x08 & PINB; // pinb3 pin 11
-
-				while(led==1)
-				{
-					PORTD|=0x80;//(1<< PD7);
-					PORTD^=0x40;//(1<< PD6 );////////////////////////////////
-					_delay_ms(5);
-
-					led = 0x08 & PINB;
-					block = 0x02 & PORTD;
-					if(block==OFF)
-					{
-						break;
-					}
-
-			
-				}
-				PORTB&=0xFC;
-
-				h = 0x10 & PINB;
-				block = 0x02 & PORTD;
-				if(block==OFF)
-				{
-					break;
-				}
-			}
-
-		e=0x08 & PORTD;
 
 		}
-	}
+		PORTD&=0x7F;
+		
 
+		}
 	a=ON;
 
+
 }
-/*==== >> avelacrac masi verj << ====*
+/*==== >> avelacrac masi verj << ====*/
 /********************************/
-
-
 
 
 int main(void)
@@ -365,12 +234,14 @@ int main(void)
 	i1=0;
 	j1=0;
 
-	b=2;
+	b=4;
+
+	a=ON;
+
 
 
 	DDRB=(1<<DDB1)|(1<<DDB0)|(1<<DDB2)|(1<<DDB5);
 	PORTB=(1<< PB2)|(1<<PB5);
-
 
 	PORTD=0x00;
 	DDRD=(1<<DDD7)|(1<<DDD6);
@@ -388,21 +259,10 @@ int main(void)
 	//Nuber_of_operetions=(Nuber_of_operetions>>2);
 	//b=Nuber_of_operetions;
 
-while(1)
-{
-	block = 0x02 & PORTD;
-	if(block==OFF)
+	while(1)
 	{
-		a=ON;
-		
+		_delay_ms(1000);
 	}
-	else
-	{
-		a=OFF;
-	}
-	
-	_delay_ms(10);
-}
 	
 	//Nuber_of_operetions=PIND&0x1C;
 	//Nuber_of_operetions=(Nuber_of_operetions>>2);

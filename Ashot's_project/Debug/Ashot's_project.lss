@@ -3,31 +3,31 @@ Ashot's_project.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  00000444  2**0
+  0 .data         00000000  00800100  00800100  00000490  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000003d0  00000000  00000000  00000074  2**1
+  1 .text         0000041c  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000014  00800100  00800100  00000444  2**0
+  2 .bss          00000017  00800100  00800100  00000490  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000444  2**0
+  3 .comment      00000030  00000000  00000000  00000490  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000474  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004c0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000050  00000000  00000000  000004b4  2**0
+  5 .debug_aranges 00000050  00000000  00000000  00000500  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000972  00000000  00000000  00000504  2**0
+  6 .debug_info   000009aa  00000000  00000000  00000550  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000743  00000000  00000000  00000e76  2**0
+  7 .debug_abbrev 00000734  00000000  00000000  00000efa  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000564  00000000  00000000  000015b9  2**0
+  8 .debug_line   000005f5  00000000  00000000  0000162e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000f8  00000000  00000000  00001b20  2**2
+  9 .debug_frame  000000f8  00000000  00000000  00001c24  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000042e  00000000  00000000  00001c18  2**0
+ 10 .debug_str    00000469  00000000  00000000  00001d1c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000280  00000000  00000000  00002046  2**0
+ 11 .debug_loc    00000280  00000000  00000000  00002185  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000058  00000000  00000000  000022c6  2**0
+ 12 .debug_ranges 00000058  00000000  00000000  00002405  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -35,19 +35,19 @@ Disassembly of section .text:
 00000000 <__vectors>:
    0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
    4:	0c 94 61 00 	jmp	0xc2	; 0xc2 <__vector_1>
-   8:	0c 94 59 01 	jmp	0x2b2	; 0x2b2 <__vector_2>
+   8:	0c 94 60 01 	jmp	0x2c0	; 0x2c0 <__vector_2>
    c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
-  1c:	0c 94 83 00 	jmp	0x106	; 0x106 <__vector_7>
+  1c:	0c 94 7d 00 	jmp	0xfa	; 0xfa <__vector_7>
   20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
-  38:	0c 94 07 01 	jmp	0x20e	; 0x20e <__vector_14>
+  38:	0c 94 ef 00 	jmp	0x1de	; 0x1de <__vector_14>
   3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
@@ -78,11 +78,11 @@ Disassembly of section .text:
   7c:	1d 92       	st	X+, r1
 
 0000007e <.do_clear_bss_start>:
-  7e:	a4 31       	cpi	r26, 0x14	; 20
+  7e:	a7 31       	cpi	r26, 0x17	; 23
   80:	b2 07       	cpc	r27, r18
   82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
-  84:	0e 94 b1 01 	call	0x362	; 0x362 <main>
-  88:	0c 94 e6 01 	jmp	0x3cc	; 0x3cc <_exit>
+  84:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <main>
+  88:	0c 94 0c 02 	jmp	0x418	; 0x418 <_exit>
 
 0000008c <__bad_interrupt>:
   8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -143,9 +143,9 @@ void Init_Interrupts()
   c0:	08 95       	ret
 
 000000c2 <__vector_1>:
-//
-	//PORTB&=(0<< PB0);
-//}
+uint8_t			led;
+unsigned char	manual_mode;
+uint8_t			motor_2_counter_checker = 0;
 
 ISR (INT0_vect)
 {	
@@ -157,585 +157,682 @@ ISR (INT0_vect)
   cc:	8f 93       	push	r24
   ce:	9f 93       	push	r25
 	if(AUTOMATIC_state==ON)
-  d0:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <AUTOMATIC_state>
+  d0:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <AUTOMATIC_state>
   d4:	81 30       	cpi	r24, 0x01	; 1
-  d6:	81 f4       	brne	.+32     	; 0xf8 <__vector_1+0x36>
+  d6:	51 f4       	brne	.+20     	; 0xec <__vector_1+0x2a>
 	{
 		battom1=ON;
   d8:	81 e0       	ldi	r24, 0x01	; 1
   da:	90 e0       	ldi	r25, 0x00	; 0
-  dc:	90 93 09 01 	sts	0x0109, r25	; 0x800109 <battom1+0x1>
-  e0:	80 93 08 01 	sts	0x0108, r24	; 0x800108 <battom1>
+  dc:	90 93 0c 01 	sts	0x010C, r25	; 0x80010c <battom1+0x1>
+  e0:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <battom1>
 		j1=0;
-  e4:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <j1+0x1>
-  e8:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <j1>
-		c=40960;//2560;
-  ec:	80 e0       	ldi	r24, 0x00	; 0
-  ee:	90 ea       	ldi	r25, 0xA0	; 160
-  f0:	90 93 0c 01 	sts	0x010C, r25	; 0x80010c <c+0x1>
-  f4:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <c>
+  e4:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <j1+0x1>
+  e8:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <j1>
+		//c=40960;//2560;
 	}
 }
-  f8:	9f 91       	pop	r25
-  fa:	8f 91       	pop	r24
-  fc:	0f 90       	pop	r0
-  fe:	0f be       	out	0x3f, r0	; 63
- 100:	0f 90       	pop	r0
- 102:	1f 90       	pop	r1
- 104:	18 95       	reti
+  ec:	9f 91       	pop	r25
+  ee:	8f 91       	pop	r24
+  f0:	0f 90       	pop	r0
+  f2:	0f be       	out	0x3f, r0	; 63
+  f4:	0f 90       	pop	r0
+  f6:	1f 90       	pop	r1
+  f8:	18 95       	reti
 
-00000106 <__vector_7>:
+000000fa <__vector_7>:
 
 ISR (TIMER2_COMPA_vect) 
 {
- 106:	1f 92       	push	r1
- 108:	0f 92       	push	r0
- 10a:	0f b6       	in	r0, 0x3f	; 63
- 10c:	0f 92       	push	r0
- 10e:	11 24       	eor	r1, r1
- 110:	2f 93       	push	r18
- 112:	8f 93       	push	r24
- 114:	9f 93       	push	r25
+  fa:	1f 92       	push	r1
+  fc:	0f 92       	push	r0
+  fe:	0f b6       	in	r0, 0x3f	; 63
+ 100:	0f 92       	push	r0
+ 102:	11 24       	eor	r1, r1
+ 104:	2f 93       	push	r18
+ 106:	8f 93       	push	r24
+ 108:	9f 93       	push	r25
 	
 	if(battom1==ON)
- 116:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <battom1>
- 11a:	90 91 09 01 	lds	r25, 0x0109	; 0x800109 <battom1+0x1>
- 11e:	01 97       	sbiw	r24, 0x01	; 1
- 120:	09 f0       	breq	.+2      	; 0x124 <__vector_7+0x1e>
- 122:	6d c0       	rjmp	.+218    	; 0x1fe <__vector_7+0xf8>
+ 10a:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <battom1>
+ 10e:	90 91 0c 01 	lds	r25, 0x010C	; 0x80010c <battom1+0x1>
+ 112:	01 97       	sbiw	r24, 0x01	; 1
+ 114:	09 f0       	breq	.+2      	; 0x118 <__vector_7+0x1e>
+ 116:	5b c0       	rjmp	.+182    	; 0x1ce <__vector_7+0xd4>
 	{
 		AUTOMATIC_state=OFF;
- 124:	10 92 0a 01 	sts	0x010A, r1	; 0x80010a <AUTOMATIC_state>
-
-		//PORTB|=(1<< PB0);
+ 118:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <AUTOMATIC_state>
 		motor_1_ON;
- 128:	2b 9a       	sbi	0x05, 3	; 5
+ 11c:	2b 9a       	sbi	0x05, 3	; 5
 
-		if (b!=0)
- 12a:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <b>
- 12e:	88 23       	and	r24, r24
- 130:	09 f4       	brne	.+2      	; 0x134 <__vector_7+0x2e>
- 132:	52 c0       	rjmp	.+164    	; 0x1d8 <__vector_7+0xd2>
+		if (shpindel_path_counter!=0)
+ 11e:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <shpindel_path_counter>
+ 122:	88 23       	and	r24, r24
+ 124:	09 f4       	brne	.+2      	; 0x128 <__vector_7+0x2e>
+ 126:	40 c0       	rjmp	.+128    	; 0x1a8 <__vector_7+0xae>
 		{
 			if(j1==0)
- 134:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <j1>
- 138:	90 91 04 01 	lds	r25, 0x0104	; 0x800104 <j1+0x1>
- 13c:	00 97       	sbiw	r24, 0x00	; 0
- 13e:	31 f5       	brne	.+76     	; 0x18c <__vector_7+0x86>
+ 128:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <j1>
+ 12c:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <j1+0x1>
+ 130:	00 97       	sbiw	r24, 0x00	; 0
+ 132:	a1 f4       	brne	.+40     	; 0x15c <__vector_7+0x62>
 			{
 				motor_1_Inverse;
- 140:	95 b1       	in	r25, 0x05	; 5
- 142:	80 e2       	ldi	r24, 0x20	; 32
- 144:	89 27       	eor	r24, r25
- 146:	85 b9       	out	0x05, r24	; 5
+ 134:	95 b1       	in	r25, 0x05	; 5
+ 136:	80 e2       	ldi	r24, 0x20	; 32
+ 138:	89 27       	eor	r24, r25
+ 13a:	85 b9       	out	0x05, r24	; 5
 				i1++;
- 148:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <i1>
- 14c:	90 91 13 01 	lds	r25, 0x0113	; 0x800113 <i1+0x1>
- 150:	01 96       	adiw	r24, 0x01	; 1
- 152:	90 93 13 01 	sts	0x0113, r25	; 0x800113 <i1+0x1>
- 156:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <i1>
-			//	j1=4;
+ 13c:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <i1>
+ 140:	90 91 16 01 	lds	r25, 0x0116	; 0x800116 <i1+0x1>
+ 144:	01 96       	adiw	r24, 0x01	; 1
+ 146:	90 93 16 01 	sts	0x0116, r25	; 0x800116 <i1+0x1>
+ 14a:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <i1>
+				//c=c/2;
+				//j1=c; 
+				//}
+				//else
 
-				/*******************************/
-				/*==== >> avelacrac mas << ====*/
-
-				if(c!=5)
- 15a:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <c>
- 15e:	90 91 0c 01 	lds	r25, 0x010C	; 0x80010c <c+0x1>
- 162:	85 30       	cpi	r24, 0x05	; 5
- 164:	91 05       	cpc	r25, r1
- 166:	59 f0       	breq	.+22     	; 0x17e <__vector_7+0x78>
-				{
-				c=c/2;
- 168:	96 95       	lsr	r25
- 16a:	87 95       	ror	r24
- 16c:	90 93 0c 01 	sts	0x010C, r25	; 0x80010c <c+0x1>
- 170:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <c>
-				j1=c; 
- 174:	90 93 04 01 	sts	0x0104, r25	; 0x800104 <j1+0x1>
- 178:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <j1>
- 17c:	0c c0       	rjmp	.+24     	; 0x196 <__vector_7+0x90>
-				}
-				else
-				j1=4;//1khz generation 6sc 10-200ms wait 
- 17e:	84 e0       	ldi	r24, 0x04	; 4
- 180:	90 e0       	ldi	r25, 0x00	; 0
- 182:	90 93 04 01 	sts	0x0104, r25	; 0x800104 <j1+0x1>
- 186:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <j1>
- 18a:	05 c0       	rjmp	.+10     	; 0x196 <__vector_7+0x90>
+				j1=motor_1_code_hz;//1khz generation 6sc 10-200ms wait 
+ 14e:	84 e0       	ldi	r24, 0x04	; 4
+ 150:	90 e0       	ldi	r25, 0x00	; 0
+ 152:	90 93 05 01 	sts	0x0105, r25	; 0x800105 <j1+0x1>
+ 156:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <j1>
+ 15a:	05 c0       	rjmp	.+10     	; 0x166 <__vector_7+0x6c>
 
 			}
 
 			else
 			{
 				j1--;
- 18c:	01 97       	sbiw	r24, 0x01	; 1
- 18e:	90 93 04 01 	sts	0x0104, r25	; 0x800104 <j1+0x1>
- 192:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <j1>
+ 15c:	01 97       	sbiw	r24, 0x01	; 1
+ 15e:	90 93 05 01 	sts	0x0105, r25	; 0x800105 <j1+0x1>
+ 162:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <j1>
 			}
 
 			if(i1==12000)
- 196:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <i1>
- 19a:	90 91 13 01 	lds	r25, 0x0113	; 0x800113 <i1+0x1>
- 19e:	80 3e       	cpi	r24, 0xE0	; 224
- 1a0:	9e 42       	sbci	r25, 0x2E	; 46
- 1a2:	69 f5       	brne	.+90     	; 0x1fe <__vector_7+0xf8>
+ 166:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <i1>
+ 16a:	90 91 16 01 	lds	r25, 0x0116	; 0x800116 <i1+0x1>
+ 16e:	80 3e       	cpi	r24, 0xE0	; 224
+ 170:	9e 42       	sbci	r25, 0x2E	; 46
+ 172:	69 f5       	brne	.+90     	; 0x1ce <__vector_7+0xd4>
 			{
 				i1=0;
- 1a4:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <i1+0x1>
- 1a8:	10 92 12 01 	sts	0x0112, r1	; 0x800112 <i1>
-				b--;
- 1ac:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <b>
- 1b0:	81 50       	subi	r24, 0x01	; 1
- 1b2:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <b>
+ 174:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <i1+0x1>
+ 178:	10 92 15 01 	sts	0x0115, r1	; 0x800115 <i1>
+				shpindel_path_counter--;
+ 17c:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <shpindel_path_counter>
+ 180:	81 50       	subi	r24, 0x01	; 1
+ 182:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <shpindel_path_counter>
 				
 				//PORTB &= 0xFC; //&=(0<< PB1);
 				motor_1_signal_OFF;
- 1b6:	2d 98       	cbi	0x05, 5	; 5
+ 186:	2d 98       	cbi	0x05, 5	; 5
 				//PORTB &=(0<< PB0);
 				motor_1_OFF;
- 1b8:	2b 98       	cbi	0x05, 3	; 5
+ 188:	2b 98       	cbi	0x05, 3	; 5
 				//PORTB ^=0x04;//(1<< PB2);
 				motor_1_dir_inverse;
- 1ba:	95 b1       	in	r25, 0x05	; 5
- 1bc:	80 e1       	ldi	r24, 0x10	; 16
- 1be:	89 27       	eor	r24, r25
- 1c0:	85 b9       	out	0x05, r24	; 5
+ 18a:	95 b1       	in	r25, 0x05	; 5
+ 18c:	80 e1       	ldi	r24, 0x10	; 16
+ 18e:	89 27       	eor	r24, r25
+ 190:	85 b9       	out	0x05, r24	; 5
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 1c2:	8f ef       	ldi	r24, 0xFF	; 255
- 1c4:	91 ee       	ldi	r25, 0xE1	; 225
- 1c6:	24 e0       	ldi	r18, 0x04	; 4
- 1c8:	81 50       	subi	r24, 0x01	; 1
- 1ca:	90 40       	sbci	r25, 0x00	; 0
- 1cc:	20 40       	sbci	r18, 0x00	; 0
- 1ce:	e1 f7       	brne	.-8      	; 0x1c8 <__vector_7+0xc2>
- 1d0:	00 c0       	rjmp	.+0      	; 0x1d2 <__vector_7+0xcc>
- 1d2:	00 00       	nop
+ 192:	8f ef       	ldi	r24, 0xFF	; 255
+ 194:	91 ee       	ldi	r25, 0xE1	; 225
+ 196:	24 e0       	ldi	r18, 0x04	; 4
+ 198:	81 50       	subi	r24, 0x01	; 1
+ 19a:	90 40       	sbci	r25, 0x00	; 0
+ 19c:	20 40       	sbci	r18, 0x00	; 0
+ 19e:	e1 f7       	brne	.-8      	; 0x198 <__vector_7+0x9e>
+ 1a0:	00 c0       	rjmp	.+0      	; 0x1a2 <__vector_7+0xa8>
+ 1a2:	00 00       	nop
 				_delay_ms(100);
 
 
 
 				//PORTB|=0x01;//(1<< PB0);
 				motor_1_ON;
- 1d4:	2b 9a       	sbi	0x05, 3	; 5
- 1d6:	13 c0       	rjmp	.+38     	; 0x1fe <__vector_7+0xf8>
-			}
+ 1a4:	2b 9a       	sbi	0x05, 3	; 5
+ 1a6:	13 c0       	rjmp	.+38     	; 0x1ce <__vector_7+0xd4>
 		}
 
 		else
 		{
-			PORTB|=0x04;//(1<< PB2);
- 1d8:	2a 9a       	sbi	0x05, 2	; 5
+			//PORTB|=0x04;//(1<< PB2);//////////////////////////////////////////
+			motor_1_dir_on;
+ 1a8:	2c 9a       	sbi	0x05, 4	; 5
 			//PORTB&=0xFE;//(0<< PB0);
 			motor_1_OFF;
- 1da:	2b 98       	cbi	0x05, 3	; 5
+ 1aa:	2b 98       	cbi	0x05, 3	; 5
 			battom1=OFF;
- 1dc:	10 92 09 01 	sts	0x0109, r1	; 0x800109 <battom1+0x1>
- 1e0:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <battom1>
+ 1ac:	10 92 0c 01 	sts	0x010C, r1	; 0x80010c <battom1+0x1>
+ 1b0:	10 92 0b 01 	sts	0x010B, r1	; 0x80010b <battom1>
 			battom0=ON;
- 1e4:	81 e0       	ldi	r24, 0x01	; 1
- 1e6:	90 e0       	ldi	r25, 0x00	; 0
- 1e8:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
- 1ec:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 1b4:	81 e0       	ldi	r24, 0x01	; 1
+ 1b6:	90 e0       	ldi	r25, 0x00	; 0
+ 1b8:	90 93 02 01 	sts	0x0102, r25	; 0x800102 <battom0+0x1>
+ 1bc:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <battom0>
 			j0=0;
- 1f0:	10 92 11 01 	sts	0x0111, r1	; 0x800111 <j0+0x1>
- 1f4:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <j0>
+ 1c0:	10 92 14 01 	sts	0x0114, r1	; 0x800114 <j0+0x1>
+ 1c4:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <j0>
 			//b=Nuber_of_operetions;
-			b=4;
- 1f8:	84 e0       	ldi	r24, 0x04	; 4
- 1fa:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <b>
+			shpindel_path_counter=shpindel_path_counter_VAR;
+ 1c8:	84 e0       	ldi	r24, 0x04	; 4
+ 1ca:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <shpindel_path_counter>
 		}
 	}
 
 }	
- 1fe:	9f 91       	pop	r25
- 200:	8f 91       	pop	r24
- 202:	2f 91       	pop	r18
- 204:	0f 90       	pop	r0
- 206:	0f be       	out	0x3f, r0	; 63
- 208:	0f 90       	pop	r0
- 20a:	1f 90       	pop	r1
- 20c:	18 95       	reti
+ 1ce:	9f 91       	pop	r25
+ 1d0:	8f 91       	pop	r24
+ 1d2:	2f 91       	pop	r18
+ 1d4:	0f 90       	pop	r0
+ 1d6:	0f be       	out	0x3f, r0	; 63
+ 1d8:	0f 90       	pop	r0
+ 1da:	1f 90       	pop	r1
+ 1dc:	18 95       	reti
 
-0000020e <__vector_14>:
+000001de <__vector_14>:
 
 
 
 ISR (TIMER0_COMPA_vect)
 {
- 20e:	1f 92       	push	r1
- 210:	0f 92       	push	r0
- 212:	0f b6       	in	r0, 0x3f	; 63
- 214:	0f 92       	push	r0
- 216:	11 24       	eor	r1, r1
- 218:	8f 93       	push	r24
- 21a:	9f 93       	push	r25
+ 1de:	1f 92       	push	r1
+ 1e0:	0f 92       	push	r0
+ 1e2:	0f b6       	in	r0, 0x3f	; 63
+ 1e4:	0f 92       	push	r0
+ 1e6:	11 24       	eor	r1, r1
+ 1e8:	8f 93       	push	r24
+ 1ea:	9f 93       	push	r25
 	if(battom0==ON)
- 21c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 220:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
- 224:	01 97       	sbiw	r24, 0x01	; 1
- 226:	f1 f5       	brne	.+124    	; 0x2a4 <__vector_14+0x96>
+ 1ec:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <battom0>
+ 1f0:	90 91 02 01 	lds	r25, 0x0102	; 0x800102 <battom0+0x1>
+ 1f4:	01 97       	sbiw	r24, 0x01	; 1
+ 1f6:	09 f0       	breq	.+2      	; 0x1fa <__vector_14+0x1c>
+ 1f8:	5c c0       	rjmp	.+184    	; 0x2b2 <__vector_14+0xd4>
 	{
 		//PORTD|=(1<< PD7);
 		motor_2_ON;
- 228:	29 9a       	sbi	0x05, 1	; 5
+ 1fa:	29 9a       	sbi	0x05, 1	; 5
 		if(j0==0)
- 22a:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <j0>
- 22e:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <j0+0x1>
- 232:	00 97       	sbiw	r24, 0x00	; 0
- 234:	a1 f4       	brne	.+40     	; 0x25e <__vector_14+0x50>
+ 1fc:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <j0>
+ 200:	90 91 14 01 	lds	r25, 0x0114	; 0x800114 <j0+0x1>
+ 204:	00 97       	sbiw	r24, 0x00	; 0
+ 206:	a1 f4       	brne	.+40     	; 0x230 <__vector_14+0x52>
 		{
 			//PORTD^=(1<< PD6 );
 			motor_2_Inverse;
- 236:	95 b1       	in	r25, 0x05	; 5
- 238:	81 e0       	ldi	r24, 0x01	; 1
- 23a:	89 27       	eor	r24, r25
- 23c:	85 b9       	out	0x05, r24	; 5
+ 208:	95 b1       	in	r25, 0x05	; 5
+ 20a:	81 e0       	ldi	r24, 0x01	; 1
+ 20c:	89 27       	eor	r24, r25
+ 20e:	85 b9       	out	0x05, r24	; 5
 			i0++;
- 23e:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <i0>
- 242:	90 91 0e 01 	lds	r25, 0x010E	; 0x80010e <i0+0x1>
- 246:	01 96       	adiw	r24, 0x01	; 1
- 248:	90 93 0e 01 	sts	0x010E, r25	; 0x80010e <i0+0x1>
- 24c:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <i0>
-			j0=50;
- 250:	82 e3       	ldi	r24, 0x32	; 50
- 252:	90 e0       	ldi	r25, 0x00	; 0
- 254:	90 93 11 01 	sts	0x0111, r25	; 0x800111 <j0+0x1>
- 258:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <j0>
- 25c:	05 c0       	rjmp	.+10     	; 0x268 <__vector_14+0x5a>
+ 210:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <i0>
+ 214:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <i0+0x1>
+ 218:	01 96       	adiw	r24, 0x01	; 1
+ 21a:	90 93 11 01 	sts	0x0111, r25	; 0x800111 <i0+0x1>
+ 21e:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <i0>
+			j0=motor_2_code_hz;
+ 222:	81 e3       	ldi	r24, 0x31	; 49
+ 224:	90 e0       	ldi	r25, 0x00	; 0
+ 226:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <j0+0x1>
+ 22a:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <j0>
+ 22e:	05 c0       	rjmp	.+10     	; 0x23a <__vector_14+0x5c>
 		}
 
 		else
 		{
 			j0--;
- 25e:	01 97       	sbiw	r24, 0x01	; 1
- 260:	90 93 11 01 	sts	0x0111, r25	; 0x800111 <j0+0x1>
- 264:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <j0>
+ 230:	01 97       	sbiw	r24, 0x01	; 1
+ 232:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <j0+0x1>
+ 236:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <j0>
 		}
 		if(i0==200)
- 268:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <i0>
- 26c:	90 91 0e 01 	lds	r25, 0x010E	; 0x80010e <i0+0x1>
- 270:	88 3c       	cpi	r24, 0xC8	; 200
- 272:	91 05       	cpc	r25, r1
- 274:	b9 f4       	brne	.+46     	; 0x2a4 <__vector_14+0x96>
+ 23a:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <i0>
+ 23e:	90 91 11 01 	lds	r25, 0x0111	; 0x800111 <i0+0x1>
+ 242:	88 3c       	cpi	r24, 0xC8	; 200
+ 244:	91 05       	cpc	r25, r1
+ 246:	e1 f4       	brne	.+56     	; 0x280 <__vector_14+0xa2>
 		{
 			i0=0;
- 276:	10 92 0e 01 	sts	0x010E, r1	; 0x80010e <i0+0x1>
- 27a:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <i0>
+ 248:	10 92 11 01 	sts	0x0111, r1	; 0x800111 <i0+0x1>
+ 24c:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <i0>
 			battom0=OFF;
- 27e:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
- 282:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+ 250:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <battom0+0x1>
+ 254:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <battom0>
 			
 			//PORTD&=(0<< PD7);
 			motor_2_OFF;
- 286:	29 98       	cbi	0x05, 1	; 5
+ 258:	29 98       	cbi	0x05, 1	; 5
 			//PORTD^=(0<< PD6);
 			//motor_2_Inverse;
 			motor_2_signal_OFF;
- 288:	28 98       	cbi	0x05, 0	; 5
+ 25a:	28 98       	cbi	0x05, 0	; 5
 			AUTOMATIC_state=ON;
- 28a:	81 e0       	ldi	r24, 0x01	; 1
- 28c:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <AUTOMATIC_state>
+ 25c:	81 e0       	ldi	r24, 0x01	; 1
+ 25e:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <AUTOMATIC_state>
 			battom1=ON;
- 290:	81 e0       	ldi	r24, 0x01	; 1
- 292:	90 e0       	ldi	r25, 0x00	; 0
- 294:	90 93 09 01 	sts	0x0109, r25	; 0x800109 <battom1+0x1>
- 298:	80 93 08 01 	sts	0x0108, r24	; 0x800108 <battom1>
+ 262:	81 e0       	ldi	r24, 0x01	; 1
+ 264:	90 e0       	ldi	r25, 0x00	; 0
+ 266:	90 93 0c 01 	sts	0x010C, r25	; 0x80010c <battom1+0x1>
+ 26a:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <battom1>
 			j1=0;
- 29c:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <j1+0x1>
- 2a0:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <j1>
+ 26e:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <j1+0x1>
+ 272:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <j1>
+			motor_2_counter_checker++;
+ 276:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 27a:	8f 5f       	subi	r24, 0xFF	; 255
+ 27c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
 		}
-	
+
+			if (motor_2_counter_checker == 120)
+ 280:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 284:	88 37       	cpi	r24, 0x78	; 120
+ 286:	a9 f4       	brne	.+42     	; 0x2b2 <__vector_14+0xd4>
+			{
+				led = led_check; //6 pd6 // pinb3 pin 11
+ 288:	89 b1       	in	r24, 0x09	; 9
+ 28a:	80 74       	andi	r24, 0x40	; 64
+ 28c:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <led>
+
+				while(led==OFF)
+ 290:	81 11       	cpse	r24, r1
+ 292:	0b c0       	rjmp	.+22     	; 0x2aa <__vector_14+0xcc>
+				{
+					//PORTB|=0x02;  //  9 pb1 (1<< PB1 ) // PORTD|=0x80;//(1<< PD7);
+					//PORTB^=0x01;  // 8 pb0 (1<< PB0 ) // PORTD^=0x40;//(1<< PD6
+					motor_2_ON;
+					motor_2_Inverse;
+ 294:	91 e0       	ldi	r25, 0x01	; 1
+
+				while(led==OFF)
+				{
+					//PORTB|=0x02;  //  9 pb1 (1<< PB1 ) // PORTD|=0x80;//(1<< PD7);
+					//PORTB^=0x01;  // 8 pb0 (1<< PB0 ) // PORTD^=0x40;//(1<< PD6
+					motor_2_ON;
+ 296:	29 9a       	sbi	0x05, 1	; 5
+					motor_2_Inverse;
+ 298:	85 b1       	in	r24, 0x05	; 5
+ 29a:	89 27       	eor	r24, r25
+ 29c:	85 b9       	out	0x05, r24	; 5
+					led = led_check; // 6 pd6 // pinb3 pin
+ 29e:	89 b1       	in	r24, 0x09	; 9
+ 2a0:	80 74       	andi	r24, 0x40	; 64
+ 2a2:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <led>
+
+			if (motor_2_counter_checker == 120)
+			{
+				led = led_check; //6 pd6 // pinb3 pin 11
+
+				while(led==OFF)
+ 2a6:	88 23       	and	r24, r24
+ 2a8:	b1 f3       	breq	.-20     	; 0x296 <__vector_14+0xb8>
+					motor_2_ON;
+					motor_2_Inverse;
+					led = led_check; // 6 pd6 // pinb3 pin
+				}
+				//PORTB&=0x6B; // 8 pb0 - 11 pb3 // 9 pb1 - 13 pb5 // 1111 1100 <<----petqa poxel
+				motor_2_OFF;
+ 2aa:	29 98       	cbi	0x05, 1	; 5
+				motor_2_signal_OFF;
+ 2ac:	28 98       	cbi	0x05, 0	; 5
+				motor_2_counter_checker = 0;
+ 2ae:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+			}
 	}
-
-
 }
- 2a4:	9f 91       	pop	r25
- 2a6:	8f 91       	pop	r24
- 2a8:	0f 90       	pop	r0
- 2aa:	0f be       	out	0x3f, r0	; 63
- 2ac:	0f 90       	pop	r0
- 2ae:	1f 90       	pop	r1
- 2b0:	18 95       	reti
+ 2b2:	9f 91       	pop	r25
+ 2b4:	8f 91       	pop	r24
+ 2b6:	0f 90       	pop	r0
+ 2b8:	0f be       	out	0x3f, r0	; 63
+ 2ba:	0f 90       	pop	r0
+ 2bc:	1f 90       	pop	r1
+ 2be:	18 95       	reti
 
-000002b2 <__vector_2>:
+000002c0 <__vector_2>:
+
+
 /***************************************
 ===========>> manual mode <<===========*/
-/*======= >> avelacrac mas << ==========*/
-
 ISR(INT1_vect)
 {
- 2b2:	1f 92       	push	r1
- 2b4:	0f 92       	push	r0
- 2b6:	0f b6       	in	r0, 0x3f	; 63
- 2b8:	0f 92       	push	r0
- 2ba:	11 24       	eor	r1, r1
- 2bc:	2f 93       	push	r18
- 2be:	3f 93       	push	r19
- 2c0:	4f 93       	push	r20
- 2c2:	8f 93       	push	r24
- 2c4:	9f 93       	push	r25
- 2c6:	ef 93       	push	r30
- 2c8:	ff 93       	push	r31
+ 2c0:	1f 92       	push	r1
+ 2c2:	0f 92       	push	r0
+ 2c4:	0f b6       	in	r0, 0x3f	; 63
+ 2c6:	0f 92       	push	r0
+ 2c8:	11 24       	eor	r1, r1
+ 2ca:	2f 93       	push	r18
+ 2cc:	3f 93       	push	r19
+ 2ce:	4f 93       	push	r20
+ 2d0:	8f 93       	push	r24
+ 2d2:	9f 93       	push	r25
+ 2d4:	ef 93       	push	r30
+ 2d6:	ff 93       	push	r31
 	//u= 0x00;
 	AUTOMATIC_state=OFF;
- 2ca:	10 92 0a 01 	sts	0x010A, r1	; 0x80010a <AUTOMATIC_state>
+ 2d8:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <AUTOMATIC_state>
 	battom1=OFF;
- 2ce:	10 92 09 01 	sts	0x0109, r1	; 0x800109 <battom1+0x1>
- 2d2:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <battom1>
+ 2dc:	10 92 0c 01 	sts	0x010C, r1	; 0x80010c <battom1+0x1>
+ 2e0:	10 92 0b 01 	sts	0x010B, r1	; 0x80010b <battom1>
 	battom0=OFF;
- 2d6:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
- 2da:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+ 2e4:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <battom0+0x1>
+ 2e8:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <battom0>
 	//PORTD&=0x7F;
 	motor_2_signal_OFF;
- 2de:	28 98       	cbi	0x05, 0	; 5
+ 2ec:	28 98       	cbi	0x05, 0	; 5
 	motor_2_OFF;
- 2e0:	29 98       	cbi	0x05, 1	; 5
+ 2ee:	29 98       	cbi	0x05, 1	; 5
 	//PORTB&=0xFE;
 	motor_1_OFF;
- 2e2:	2b 98       	cbi	0x05, 3	; 5
+ 2f0:	2b 98       	cbi	0x05, 3	; 5
 
 
 	//manual_mode=0x08 & PORTD;
 	manual_mode=manual_mode_check;
- 2e4:	89 b1       	in	r24, 0x09	; 9
- 2e6:	88 70       	andi	r24, 0x08	; 8
- 2e8:	80 93 0f 01 	sts	0x010F, r24	; 0x80010f <manual_mode>
+ 2f2:	89 b1       	in	r24, 0x09	; 9
+ 2f4:	88 70       	andi	r24, 0x08	; 8
+ 2f6:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <manual_mode>
+		while(manual_mode_motor_1_on_check!=OFF)//PIND4==0x10 check if the flag is on
+		{ 
+			//PORTB|=0x01;
+			motor_1_ON;
+			//PORTB^=0x02;//(1<< PB1 );
+			motor_1_Inverse;
+ 2fa:	40 e2       	ldi	r20, 0x20	; 32
+			for(uint8_t u=1;u<=200;u++)
+			{
+				//PORTD|=0x80;//(1<< PD7);
+				//PORTD^=0x40;//(1<< PD6 );
+				motor_2_ON;
+				motor_2_Inverse;
+ 2fc:	21 e0       	ldi	r18, 0x01	; 1
+ 2fe:	38 ec       	ldi	r19, 0xC8	; 200
+	motor_1_OFF;
+
+
+	//manual_mode=0x08 & PORTD;
+	manual_mode=manual_mode_check;
 	while(manual_mode_check==OFF)//)PD3//inverse logic should be ==ON
- 2ec:	4b 9b       	sbis	0x09, 3	; 9
- 2ee:	24 c0       	rjmp	.+72     	; 0x338 <__vector_2+0x86>
- 2f0:	29 c0       	rjmp	.+82     	; 0x344 <__vector_2+0x92>
+ 300:	3e c0       	rjmp	.+124    	; 0x37e <__vector_2+0xbe>
 	{
 		
 		while(manual_mode_motor_1_on_check!=OFF)//PIND4==0x10 check if the flag is on
 		{ 
 			//PORTB|=0x01;
 			motor_1_ON;
- 2f2:	2b 9a       	sbi	0x05, 3	; 5
+ 302:	2b 9a       	sbi	0x05, 3	; 5
 			//PORTB^=0x02;//(1<< PB1 );
 			motor_1_Inverse;
- 2f4:	85 b1       	in	r24, 0x05	; 5
- 2f6:	84 27       	eor	r24, r20
- 2f8:	85 b9       	out	0x05, r24	; 5
+ 304:	85 b1       	in	r24, 0x05	; 5
+ 306:	84 27       	eor	r24, r20
+ 308:	85 b9       	out	0x05, r24	; 5
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 2fa:	8f ec       	ldi	r24, 0xCF	; 207
- 2fc:	97 e0       	ldi	r25, 0x07	; 7
- 2fe:	01 97       	sbiw	r24, 0x01	; 1
- 300:	f1 f7       	brne	.-4      	; 0x2fe <__vector_2+0x4c>
- 302:	00 c0       	rjmp	.+0      	; 0x304 <__vector_2+0x52>
- 304:	00 00       	nop
+ 30a:	8f ec       	ldi	r24, 0xCF	; 207
+ 30c:	97 e0       	ldi	r25, 0x07	; 7
+ 30e:	01 97       	sbiw	r24, 0x01	; 1
+ 310:	f1 f7       	brne	.-4      	; 0x30e <__vector_2+0x4e>
+ 312:	00 c0       	rjmp	.+0      	; 0x314 <__vector_2+0x54>
+ 314:	00 00       	nop
 	//manual_mode=0x08 & PORTD;
 	manual_mode=manual_mode_check;
 	while(manual_mode_check==OFF)//)PD3//inverse logic should be ==ON
 	{
 		
 		while(manual_mode_motor_1_on_check!=OFF)//PIND4==0x10 check if the flag is on
- 306:	1a 99       	sbic	0x03, 2	; 3
- 308:	f4 cf       	rjmp	.-24     	; 0x2f2 <__vector_2+0x40>
+ 316:	4c 99       	sbic	0x09, 4	; 9
+ 318:	f4 cf       	rjmp	.-24     	; 0x302 <__vector_2+0x42>
+			_delay_us(motor_1_hz/2);
 			//w= 0x10 & PIND;				
-			
 		}
 			
 		//PORTB&=0xFE;//(0<< PB0);
 		motor_1_OFF;
- 30a:	2b 98       	cbi	0x05, 3	; 5
+ 31a:	2b 98       	cbi	0x05, 3	; 5
 		motor_1_signal_OFF;
- 30c:	2d 98       	cbi	0x05, 5	; 5
+ 31c:	2d 98       	cbi	0x05, 5	; 5
 
 		
 		while(manual_mode_motor_2_on_check!=OFF)
- 30e:	0d c0       	rjmp	.+26     	; 0x32a <__vector_2+0x78>
- 310:	93 2f       	mov	r25, r19
+ 31e:	0d c0       	rjmp	.+26     	; 0x33a <__vector_2+0x7a>
+ 320:	93 2f       	mov	r25, r19
 		{
 			for(uint8_t u=1;u<=200;u++)
 			{
 				//PORTD|=0x80;//(1<< PD7);
 				//PORTD^=0x40;//(1<< PD6 );
 				motor_2_ON;
- 312:	29 9a       	sbi	0x05, 1	; 5
+ 322:	29 9a       	sbi	0x05, 1	; 5
 				motor_2_Inverse;
- 314:	85 b1       	in	r24, 0x05	; 5
- 316:	82 27       	eor	r24, r18
- 318:	85 b9       	out	0x05, r24	; 5
+ 324:	85 b1       	in	r24, 0x05	; 5
+ 326:	82 27       	eor	r24, r18
+ 328:	85 b9       	out	0x05, r24	; 5
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 31a:	ef e1       	ldi	r30, 0x1F	; 31
- 31c:	fe e4       	ldi	r31, 0x4E	; 78
- 31e:	31 97       	sbiw	r30, 0x01	; 1
- 320:	f1 f7       	brne	.-4      	; 0x31e <__vector_2+0x6c>
- 322:	00 c0       	rjmp	.+0      	; 0x324 <__vector_2+0x72>
- 324:	00 00       	nop
- 326:	91 50       	subi	r25, 0x01	; 1
+ 32a:	ef e1       	ldi	r30, 0x1F	; 31
+ 32c:	fe e4       	ldi	r31, 0x4E	; 78
+ 32e:	31 97       	sbiw	r30, 0x01	; 1
+ 330:	f1 f7       	brne	.-4      	; 0x32e <__vector_2+0x6e>
+ 332:	00 c0       	rjmp	.+0      	; 0x334 <__vector_2+0x74>
+ 334:	00 00       	nop
+ 336:	91 50       	subi	r25, 0x01	; 1
 		motor_1_signal_OFF;
 
 		
 		while(manual_mode_motor_2_on_check!=OFF)
 		{
 			for(uint8_t u=1;u<=200;u++)
- 328:	a1 f7       	brne	.-24     	; 0x312 <__vector_2+0x60>
+ 338:	a1 f7       	brne	.-24     	; 0x322 <__vector_2+0x62>
 		//PORTB&=0xFE;//(0<< PB0);
 		motor_1_OFF;
 		motor_1_signal_OFF;
 
 		
 		while(manual_mode_motor_2_on_check!=OFF)
- 32a:	4d 99       	sbic	0x09, 5	; 9
- 32c:	f1 cf       	rjmp	.-30     	; 0x310 <__vector_2+0x5e>
+ 33a:	1a 99       	sbic	0x03, 2	; 3
+ 33c:	f1 cf       	rjmp	.-30     	; 0x320 <__vector_2+0x60>
 			}
 
 			
 		}
 		//PORTD&=0x7F;
 		motor_2_OFF;
- 32e:	29 98       	cbi	0x05, 1	; 5
+ 33e:	29 98       	cbi	0x05, 1	; 5
 		motor_2_signal_OFF;
- 330:	28 98       	cbi	0x05, 0	; 5
+ 340:	28 98       	cbi	0x05, 0	; 5
+
+		auto_correct = auto_correct_check;// 7 pd7 // pinb4 pin 12
+ 342:	89 b1       	in	r24, 0x09	; 9
+ 344:	80 78       	andi	r24, 0x80	; 128
+ 346:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <auto_correct>
+		while(auto_correct!=OFF)
+ 34a:	88 23       	and	r24, r24
+ 34c:	c1 f0       	breq	.+48     	; 0x37e <__vector_2+0xbe>
+		{
+			led = led_check; //6 pd6 // pinb3 pin 11
+ 34e:	89 b1       	in	r24, 0x09	; 9
+ 350:	80 74       	andi	r24, 0x40	; 64
+ 352:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <led>
+
+			while(led==OFF)
+ 356:	81 11       	cpse	r24, r1
+ 358:	0a c0       	rjmp	.+20     	; 0x36e <__vector_2+0xae>
+			{
+				//PORTB|=0x02;  //  9 pb1 (1<< PB1 ) // PORTD|=0x80;//(1<< PD7);
+				//PORTB^=0x01;  // 8 pb0 (1<< PB0 ) // PORTD^=0x40;//(1<< PD6 
+				motor_2_ON;
+ 35a:	29 9a       	sbi	0x05, 1	; 5
+				motor_2_Inverse;
+ 35c:	85 b1       	in	r24, 0x05	; 5
+ 35e:	82 27       	eor	r24, r18
+ 360:	85 b9       	out	0x05, r24	; 5
+				led = led_check; // 6 pd6 // pinb3 pin 
+ 362:	89 b1       	in	r24, 0x09	; 9
+ 364:	80 74       	andi	r24, 0x40	; 64
+ 366:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <led>
+		auto_correct = auto_correct_check;// 7 pd7 // pinb4 pin 12
+		while(auto_correct!=OFF)
+		{
+			led = led_check; //6 pd6 // pinb3 pin 11
+
+			while(led==OFF)
+ 36a:	88 23       	and	r24, r24
+ 36c:	b1 f3       	breq	.-20     	; 0x35a <__vector_2+0x9a>
+				motor_2_ON;
+				motor_2_Inverse;
+				led = led_check; // 6 pd6 // pinb3 pin 
+			}
+			//PORTB&=0x6B; // 8 pb0 - 11 pb3 // 9 pb1 - 13 pb5 // 1111 1100 <<----petqa poxel
+			motor_2_OFF;
+ 36e:	29 98       	cbi	0x05, 1	; 5
+			motor_2_signal_OFF;
+ 370:	28 98       	cbi	0x05, 0	; 5
+			auto_correct = auto_correct_check; //12 pb4 --> 7 pd7 // pinb4 pin 12
+ 372:	89 b1       	in	r24, 0x09	; 9
+ 374:	80 78       	andi	r24, 0x80	; 128
+ 376:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <auto_correct>
+		//PORTD&=0x7F;
+		motor_2_OFF;
+		motor_2_signal_OFF;
+
+		auto_correct = auto_correct_check;// 7 pd7 // pinb4 pin 12
+		while(auto_correct!=OFF)
+ 37a:	81 11       	cpse	r24, r1
+ 37c:	e8 cf       	rjmp	.-48     	; 0x34e <__vector_2+0x8e>
 	motor_1_OFF;
 
 
 	//manual_mode=0x08 & PORTD;
 	manual_mode=manual_mode_check;
 	while(manual_mode_check==OFF)//)PD3//inverse logic should be ==ON
- 332:	4b 9b       	sbis	0x09, 3	; 9
- 334:	04 c0       	rjmp	.+8      	; 0x33e <__vector_2+0x8c>
- 336:	06 c0       	rjmp	.+12     	; 0x344 <__vector_2+0x92>
-		while(manual_mode_motor_1_on_check!=OFF)//PIND4==0x10 check if the flag is on
-		{ 
-			//PORTB|=0x01;
-			motor_1_ON;
-			//PORTB^=0x02;//(1<< PB1 );
-			motor_1_Inverse;
- 338:	40 e2       	ldi	r20, 0x20	; 32
-			for(uint8_t u=1;u<=200;u++)
-			{
-				//PORTD|=0x80;//(1<< PD7);
-				//PORTD^=0x40;//(1<< PD6 );
-				motor_2_ON;
-				motor_2_Inverse;
- 33a:	21 e0       	ldi	r18, 0x01	; 1
- 33c:	38 ec       	ldi	r19, 0xC8	; 200
-	//manual_mode=0x08 & PORTD;
-	manual_mode=manual_mode_check;
-	while(manual_mode_check==OFF)//)PD3//inverse logic should be ==ON
+ 37e:	4b 99       	sbic	0x09, 3	; 9
+ 380:	03 c0       	rjmp	.+6      	; 0x388 <__vector_2+0xc8>
 	{
 		
 		while(manual_mode_motor_1_on_check!=OFF)//PIND4==0x10 check if the flag is on
- 33e:	1a 99       	sbic	0x03, 2	; 3
- 340:	d8 cf       	rjmp	.-80     	; 0x2f2 <__vector_2+0x40>
- 342:	e3 cf       	rjmp	.-58     	; 0x30a <__vector_2+0x58>
-		motor_2_OFF;
-		motor_2_signal_OFF;
-
-		//manual_mode=manual_mode_check;
+ 382:	4c 99       	sbic	0x09, 4	; 9
+ 384:	be cf       	rjmp	.-132    	; 0x302 <__vector_2+0x42>
+ 386:	c9 cf       	rjmp	.-110    	; 0x31a <__vector_2+0x5a>
+			motor_2_OFF;
+			motor_2_signal_OFF;
+			auto_correct = auto_correct_check; //12 pb4 --> 7 pd7 // pinb4 pin 12
+		}
 	}
 	AUTOMATIC_state=ON;
- 344:	81 e0       	ldi	r24, 0x01	; 1
- 346:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <AUTOMATIC_state>
-
-
+ 388:	81 e0       	ldi	r24, 0x01	; 1
+ 38a:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <AUTOMATIC_state>
 }
- 34a:	ff 91       	pop	r31
- 34c:	ef 91       	pop	r30
- 34e:	9f 91       	pop	r25
- 350:	8f 91       	pop	r24
- 352:	4f 91       	pop	r20
- 354:	3f 91       	pop	r19
- 356:	2f 91       	pop	r18
- 358:	0f 90       	pop	r0
- 35a:	0f be       	out	0x3f, r0	; 63
- 35c:	0f 90       	pop	r0
- 35e:	1f 90       	pop	r1
- 360:	18 95       	reti
+ 38e:	ff 91       	pop	r31
+ 390:	ef 91       	pop	r30
+ 392:	9f 91       	pop	r25
+ 394:	8f 91       	pop	r24
+ 396:	4f 91       	pop	r20
+ 398:	3f 91       	pop	r19
+ 39a:	2f 91       	pop	r18
+ 39c:	0f 90       	pop	r0
+ 39e:	0f be       	out	0x3f, r0	; 63
+ 3a0:	0f 90       	pop	r0
+ 3a2:	1f 90       	pop	r1
+ 3a4:	18 95       	reti
 
-00000362 <main>:
+000003a6 <main>:
 
 
 int main(void)
 {
 	//way=0x00;
 	battom0=OFF;
- 362:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
- 366:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+ 3a6:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <battom0+0x1>
+ 3aa:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <battom0>
 	i0=0;
- 36a:	10 92 0e 01 	sts	0x010E, r1	; 0x80010e <i0+0x1>
- 36e:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <i0>
+ 3ae:	10 92 11 01 	sts	0x0111, r1	; 0x800111 <i0+0x1>
+ 3b2:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <i0>
 	j0=0;
- 372:	10 92 11 01 	sts	0x0111, r1	; 0x800111 <j0+0x1>
- 376:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <j0>
+ 3b6:	10 92 14 01 	sts	0x0114, r1	; 0x800114 <j0+0x1>
+ 3ba:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <j0>
 	battom1=OFF;
- 37a:	10 92 09 01 	sts	0x0109, r1	; 0x800109 <battom1+0x1>
- 37e:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <battom1>
+ 3be:	10 92 0c 01 	sts	0x010C, r1	; 0x80010c <battom1+0x1>
+ 3c2:	10 92 0b 01 	sts	0x010B, r1	; 0x80010b <battom1>
 	i1=0;
- 382:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <i1+0x1>
- 386:	10 92 12 01 	sts	0x0112, r1	; 0x800112 <i1>
+ 3c6:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <i1+0x1>
+ 3ca:	10 92 15 01 	sts	0x0115, r1	; 0x800115 <i1>
 	j1=0;
- 38a:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <j1+0x1>
- 38e:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <j1>
+ 3ce:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <j1+0x1>
+ 3d2:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <j1>
 
-	b=4;
- 392:	84 e0       	ldi	r24, 0x04	; 4
- 394:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <b>
+	shpindel_path_counter=shpindel_path_counter_VAR;
+ 3d6:	84 e0       	ldi	r24, 0x04	; 4
+ 3d8:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <shpindel_path_counter>
 
 	AUTOMATIC_state=ON;
- 398:	81 e0       	ldi	r24, 0x01	; 1
- 39a:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <AUTOMATIC_state>
+ 3dc:	81 e0       	ldi	r24, 0x01	; 1
+ 3de:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <AUTOMATIC_state>
+	PORTB=0x00;
+ 3e2:	15 b8       	out	0x05, r1	; 5
+	PORTD=0x00;
+ 3e4:	1b b8       	out	0x0b, r1	; 11
+	DDRB=0x00;
+ 3e6:	14 b8       	out	0x04, r1	; 4
+	DDRD=0x00;
+ 3e8:	1a b8       	out	0x0a, r1	; 10
 
 	sbi(motor_1_freq_DDR,motor_1_freq_DDR_pin);
- 39e:	25 9a       	sbi	0x04, 5	; 4
+ 3ea:	25 9a       	sbi	0x04, 5	; 4
 	sbi(motor_1_ON_OFF_DDR,motor_1_ON_OFF_DDR_pin);
- 3a0:	23 9a       	sbi	0x04, 3	; 4
+ 3ec:	23 9a       	sbi	0x04, 3	; 4
 	sbi(motor_1_dir_DDR,motor_1_dir_DDR_pin);
- 3a2:	24 9a       	sbi	0x04, 4	; 4
+ 3ee:	24 9a       	sbi	0x04, 4	; 4
 	//DDRB=(1<<DDB1)|(1<<DDB0)|(1<<DDB2)|(1<<DDB5);
 	//PORTB=(1<< PB2)|(1<<PB5);
 	motor_1_dir_on;
- 3a4:	2c 9a       	sbi	0x05, 4	; 5
+ 3f0:	2c 9a       	sbi	0x05, 4	; 5
 	motor_2_freq_PORT=0x00;//bla bla bla pull up stuff
- 3a6:	15 b8       	out	0x05, r1	; 5
+ 3f2:	15 b8       	out	0x05, r1	; 5
 	sbi(motor_2_freq_DDR,motor_2_freq_DDR_pin);
- 3a8:	20 9a       	sbi	0x04, 0	; 4
+ 3f4:	20 9a       	sbi	0x04, 0	; 4
 	sbi(motor_2_ON_OFF_DDR,motor_2_ON_OFF_DDR_pin);
- 3aa:	21 9a       	sbi	0x04, 1	; 4
+ 3f6:	21 9a       	sbi	0x04, 1	; 4
 	//PORTD=(1<<PORTD3);
 	
 
 	cli();
- 3ac:	f8 94       	cli
+ 3f8:	f8 94       	cli
 	Init_Interrupts();
- 3ae:	0e 94 5b 00 	call	0xb6	; 0xb6 <Init_Interrupts>
+ 3fa:	0e 94 5b 00 	call	0xb6	; 0xb6 <Init_Interrupts>
 	Init_Timers();
- 3b2:	0e 94 48 00 	call	0x90	; 0x90 <Init_Timers>
+ 3fe:	0e 94 48 00 	call	0x90	; 0x90 <Init_Timers>
 	//Init_ADC();
 	//ADC_read();
 	sei();
- 3b6:	78 94       	sei
- 3b8:	2f ef       	ldi	r18, 0xFF	; 255
- 3ba:	83 ed       	ldi	r24, 0xD3	; 211
- 3bc:	90 e3       	ldi	r25, 0x30	; 48
- 3be:	21 50       	subi	r18, 0x01	; 1
- 3c0:	80 40       	sbci	r24, 0x00	; 0
- 3c2:	90 40       	sbci	r25, 0x00	; 0
- 3c4:	e1 f7       	brne	.-8      	; 0x3be <main+0x5c>
- 3c6:	00 c0       	rjmp	.+0      	; 0x3c8 <main+0x66>
- 3c8:	00 00       	nop
- 3ca:	f6 cf       	rjmp	.-20     	; 0x3b8 <main+0x56>
+ 402:	78 94       	sei
+ 404:	2f ef       	ldi	r18, 0xFF	; 255
+ 406:	83 ed       	ldi	r24, 0xD3	; 211
+ 408:	90 e3       	ldi	r25, 0x30	; 48
+ 40a:	21 50       	subi	r18, 0x01	; 1
+ 40c:	80 40       	sbci	r24, 0x00	; 0
+ 40e:	90 40       	sbci	r25, 0x00	; 0
+ 410:	e1 f7       	brne	.-8      	; 0x40a <__LOCK_REGION_LENGTH__+0xa>
+ 412:	00 c0       	rjmp	.+0      	; 0x414 <__LOCK_REGION_LENGTH__+0x14>
+ 414:	00 00       	nop
+ 416:	f6 cf       	rjmp	.-20     	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
 
-000003cc <_exit>:
- 3cc:	f8 94       	cli
+00000418 <_exit>:
+ 418:	f8 94       	cli
 
-000003ce <__stop_program>:
- 3ce:	ff cf       	rjmp	.-2      	; 0x3ce <__stop_program>
+0000041a <__stop_program>:
+ 41a:	ff cf       	rjmp	.-2      	; 0x41a <__stop_program>

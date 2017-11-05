@@ -4,10 +4,6 @@
  * Created: 06.08.2017 14:32:17
  * Author : Hrach
  */ 
-
- typedef int bool;
- enum { false, true };
-
 #include "defines.h"
 #include "functions.h"
 #include "functions.cpp"
@@ -24,25 +20,13 @@ unsigned int 	battom1;
 unsigned int 	i1;
 unsigned int 	j1;
 unsigned char	AUTOMATIC_state;//lets automatic mode to start
-unsigned char	b;
+unsigned char	shpindel_path_counter;
 unsigned int	c;
 unsigned char	Nuber_of_operetions;
-//unsigned char	u;
-//unsigned char	manual_mode_motor_1_state;
+uint8_t			auto_correct;
+uint8_t			led;
 unsigned char	manual_mode;
-//unsigned char	manual_mode_motor_2_state;
-//ISR (INT0_vect)
-//{
-	//PORTB|=(1<< PB0);
-//
-	//while(PIND3==0)
-	//{	
-		//PORTB^=(1<< PB1 );
-		//_delay_ms(100);
-	//}
-//
-	//PORTB&=(0<< PB0);
-//}
+uint8_t			motor_2_counter_checker = 0;
 
 ISR (INT0_vect)
 {	
@@ -50,7 +34,7 @@ ISR (INT0_vect)
 	{
 		battom1=ON;
 		j1=0;
-		c=40960;//2560;
+		//c=40960;//2560;
 	}
 }
 
@@ -60,11 +44,9 @@ ISR (TIMER2_COMPA_vect)
 	if(battom1==ON)
 	{
 		AUTOMATIC_state=OFF;
-
-		//PORTB|=(1<< PB0);
 		motor_1_ON;
 
-		if (b!=0)
+		if (shpindel_path_counter!=0)
 		{
 			if(j1==0)
 			{
@@ -78,14 +60,15 @@ ISR (TIMER2_COMPA_vect)
 
 				/*******************************/
 				/*==== >> avelacrac mas << ====*/
+//
+				//if(c!=5)
+				//{
+				//c=c/2;
+				//j1=c; 
+				//}
+				//else
 
-				if(c!=5)
-				{
-				c=c/2;
-				j1=c; 
-				}
-				else
-				j1=4;//1khz generation 6sc 10-200ms wait 
+				j1=motor_1_code_hz;//1khz generation 6sc 10-200ms wait 
 
 				/*==== >> avelacrac masi verj << ====*/
 				/*************************************/
@@ -100,7 +83,7 @@ ISR (TIMER2_COMPA_vect)
 			if(i1==12000)
 			{
 				i1=0;
-				b--;
+				shpindel_path_counter--;
 				
 				//PORTB &= 0xFC; //&=(0<< PB1);
 				motor_1_signal_OFF;
@@ -119,14 +102,15 @@ ISR (TIMER2_COMPA_vect)
 
 		else
 		{
-			PORTB|=0x04;//(1<< PB2);
+			//PORTB|=0x04;//(1<< PB2);//////////////////////////////////////////
+			motor_1_dir_on;
 			//PORTB&=0xFE;//(0<< PB0);
 			motor_1_OFF;
 			battom1=OFF;
 			battom0=ON;
 			j0=0;
 			//b=Nuber_of_operetions;
-			b=4;
+			shpindel_path_counter=shpindel_path_counter_VAR;
 		}
 	}
 
@@ -145,7 +129,7 @@ ISR (TIMER0_COMPA_vect)
 			//PORTD^=(1<< PD6 );
 			motor_2_Inverse;
 			i0++;
-			j0=50;
+			j0=motor_2_code_hz;
 		}
 
 		else
@@ -165,29 +149,32 @@ ISR (TIMER0_COMPA_vect)
 			AUTOMATIC_state=ON;
 			battom1=ON;
 			j1=0;
+			motor_2_counter_checker++;
 		}
-	
+
+			if (motor_2_counter_checker == 120)
+			{
+				led = led_check; //6 pd6 // pinb3 pin 11
+
+				while(led==OFF)
+				{
+					//PORTB|=0x02;  //  9 pb1 (1<< PB1 ) // PORTD|=0x80;//(1<< PD7);
+					//PORTB^=0x01;  // 8 pb0 (1<< PB0 ) // PORTD^=0x40;//(1<< PD6
+					motor_2_ON;
+					motor_2_Inverse;
+					led = led_check; // 6 pd6 // pinb3 pin
+				}
+				//PORTB&=0x6B; // 8 pb0 - 11 pb3 // 9 pb1 - 13 pb5 // 1111 1100 <<----petqa poxel
+				motor_2_OFF;
+				motor_2_signal_OFF;
+				motor_2_counter_checker = 0;
+			}
 	}
-
-
 }
-
-//ISR (ADC_vect)
-//{
-	//unsigned temp;
-//
-	//ADC_value  = ADCL;
-	//temp = ADCH;
-	//ADC_value |= (temp<<8);
-	////if(){}
-//}
-
 
 
 /***************************************
 ===========>> manual mode <<===========*/
-/*======= >> avelacrac mas << ==========*/
-
 ISR(INT1_vect)
 {
 	//u= 0x00;
@@ -212,9 +199,8 @@ ISR(INT1_vect)
 			motor_1_ON;
 			//PORTB^=0x02;//(1<< PB1 );
 			motor_1_Inverse;
-			_delay_us(500);
+			_delay_us(motor_1_hz/2);
 			//w= 0x10 & PIND;				
-			
 		}
 			
 		//PORTB&=0xFE;//(0<< PB0);
@@ -230,7 +216,7 @@ ISR(INT1_vect)
 				//PORTD^=0x40;//(1<< PD6 );
 				motor_2_ON;
 				motor_2_Inverse;
-				_delay_ms(5);
+				_delay_ms(motor_2_hz/20);
 			}
 
 			
@@ -239,13 +225,28 @@ ISR(INT1_vect)
 		motor_2_OFF;
 		motor_2_signal_OFF;
 
-		//manual_mode=manual_mode_check;
+		auto_correct = auto_correct_check;// 7 pd7 // pinb4 pin 12
+		while(auto_correct!=OFF)
+		{
+			led = led_check; //6 pd6 // pinb3 pin 11
+
+			while(led==OFF)
+			{
+				//PORTB|=0x02;  //  9 pb1 (1<< PB1 ) // PORTD|=0x80;//(1<< PD7);
+				//PORTB^=0x01;  // 8 pb0 (1<< PB0 ) // PORTD^=0x40;//(1<< PD6 
+				motor_2_ON;
+				motor_2_Inverse;
+				led = led_check; // 6 pd6 // pinb3 pin 
+			}
+			//PORTB&=0x6B; // 8 pb0 - 11 pb3 // 9 pb1 - 13 pb5 // 1111 1100 <<----petqa poxel
+			motor_2_OFF;
+			motor_2_signal_OFF;
+			auto_correct = auto_correct_check; //12 pb4 --> 7 pd7 // pinb4 pin 12
+		}
 	}
 	AUTOMATIC_state=ON;
-
-
 }
-/*==== >> avelacrac masi verj << ====*/
+
 /********************************/
 
 
@@ -259,9 +260,13 @@ int main(void)
 	i1=0;
 	j1=0;
 
-	b=4;
+	shpindel_path_counter=shpindel_path_counter_VAR;
 
 	AUTOMATIC_state=ON;
+	PORTB=0x00;
+	PORTD=0x00;
+	DDRB=0x00;
+	DDRD=0x00;
 
 	sbi(motor_1_freq_DDR,motor_1_freq_DDR_pin);
 	sbi(motor_1_ON_OFF_DDR,motor_1_ON_OFF_DDR_pin);

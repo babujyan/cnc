@@ -137,11 +137,12 @@ ISR (TIMER0_COMPA_vect)
 {
 	if(battom0==ON)
 	{
-		PORTD|=(1<< PD7);
-
+		//PORTD|=(1<< PD7);
+		motor_2_ON;
 		if(j0==0)
 		{
-			PORTD^=(1<< PD6 );
+			//PORTD^=(1<< PD6 );
+			motor_2_Inverse;
 			i0++;
 			j0=50;
 		}
@@ -154,14 +155,19 @@ ISR (TIMER0_COMPA_vect)
 		{
 			i0=0;
 			battom0=OFF;
-			PORTD&=(0<< PD7);
-			PORTD^=(0<< PD6);
+			
+			//PORTD&=(0<< PD7);
+			motor_2_OFF;
+			//PORTD^=(0<< PD6);
+			//motor_2_Inverse;
+			motor_2_signal_OFF;
 			a=ON;
 			battom1=ON;
 			j1=0;
 		}
-
+	
 	}
+
 
 }
 
@@ -187,7 +193,9 @@ ISR(INT1_vect)
 	a=OFF;
 	battom1=OFF;
 	battom0=OFF;
-	PORTD&=0x7F;
+	//PORTD&=0x7F;
+	motor_2_signal_OFF;
+	motor_2_OFF;
 	//PORTB&=0xFE;
 	motor_1_OFF;
 
@@ -210,19 +218,23 @@ ISR(INT1_vect)
 			
 		//PORTB&=0xFE;//(0<< PB0);
 		motor_1_OFF;
+		motor_1_signal_OFF;
 		r=0x20 & PIND;
 		while(r!=0)
 		{
 			for(u=1;u<=200;u++)
 			{
-				PORTD|=0x80;//(1<< PD7);
-				PORTD^=0x40;//(1<< PD6 );
+				//PORTD|=0x80;//(1<< PD7);
+				//PORTD^=0x40;//(1<< PD6 );
+				motor_2_ON;
+				motor_2_Inverse;
 				_delay_ms(5);
 			}
 
 		}
-		PORTD&=0x7F;
-		
+		//PORTD&=0x7F;
+		motor_2_OFF;
+		motor_2_signal_OFF;
 
 		}
 	a=ON;

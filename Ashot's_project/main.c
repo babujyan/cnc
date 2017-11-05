@@ -263,9 +263,10 @@ int main(void)
 
 	AUTOMATIC_state=ON;
 
-
-
-	DDRB=(1<<DDB1)|(1<<DDB0)|(1<<DDB2)|(1<<DDB5);
+	sbi(motor_1_freq_DDR,motor_1_freq_DDR_pin);
+	sbi(motor_1_ON_OFF_DDR,motor_1_ON_OFF_DDR_pin);
+	sbi(motor_1_dir_DDR,motor_1_dir_DDR_pin);
+	//DDRB=(1<<DDB1)|(1<<DDB0)|(1<<DDB2)|(1<<DDB5);
 	//PORTB=(1<< PB2)|(1<<PB5);
 	motor_1_dir_on;
 	PORTD=0x00;

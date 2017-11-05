@@ -22,14 +22,14 @@ unsigned int	j0;
 unsigned int 	battom1;
 unsigned int 	i1;
 unsigned int 	j1;
-unsigned char	a;
+unsigned char	AUTOMATIC_state;//lets automatic mode to start
 unsigned char	b;
 unsigned int	c;
 unsigned char	Nuber_of_operetions;
-unsigned char	u;
-unsigned char	w;
+//unsigned char	u;
+//unsigned char	manual_mode_motor_1_state;
 unsigned char	manual_mode;
-unsigned char	r;
+//unsigned char	manual_mode_motor_2_state;
 //ISR (INT0_vect)
 //{
 	//PORTB|=(1<< PB0);
@@ -45,7 +45,7 @@ unsigned char	r;
 
 ISR (INT0_vect)
 {	
-	if(a==ON)
+	if(AUTOMATIC_state==ON)
 	{
 		battom1=ON;
 		j1=0;
@@ -58,7 +58,7 @@ ISR (TIMER2_COMPA_vect)
 	
 	if(battom1==ON)
 	{
-		a=OFF;
+		AUTOMATIC_state=OFF;
 
 		//PORTB|=(1<< PB0);
 		motor_1_ON;
@@ -161,7 +161,7 @@ ISR (TIMER0_COMPA_vect)
 			//PORTD^=(0<< PD6);
 			//motor_2_Inverse;
 			motor_2_signal_OFF;
-			a=ON;
+			AUTOMATIC_state=ON;
 			battom1=ON;
 			j1=0;
 		}
@@ -190,7 +190,7 @@ ISR (TIMER0_COMPA_vect)
 ISR(INT1_vect)
 {
 	//u= 0x00;
-	a=OFF;
+	AUTOMATIC_state=OFF;
 	battom1=OFF;
 	battom0=OFF;
 	//PORTD&=0x7F;
@@ -201,29 +201,30 @@ ISR(INT1_vect)
 
 	PORTB^=0x20;
 
-	manual_mode=0x08 & PORTD;
-	while(manual_mode==OFF)//)PD3
+	//manual_mode=0x08 & PORTD;
+	manual_mode_check;
+	while(manual_mode==ON)//)PD3
 	{
-
-		w= 0x10 & PIND;
-		while(w!=0)//PIND4==0x10
+		
+		while(manual_mode_motor_1_on_check!=OFF)//PIND4==0x10 check if the flag is on
 		{ 
 			//PORTB|=0x01;
 			motor_1_ON;
 			//PORTB^=0x02;//(1<< PB1 );
 			motor_1_Inverse;
 			_delay_us(500);
-			w= 0x10 & PIND;				
+			//w= 0x10 & PIND;				
+			
 		}
 			
 		//PORTB&=0xFE;//(0<< PB0);
 		motor_1_OFF;
 		motor_1_signal_OFF;
 
-		r=0x20 & PIND;
-		while(r!=0)
+		
+		while(manual_mode_motor_2_on_check!=OFF)
 		{
-			for(u=1;u<=200;u++)
+			for(uint8_t u=1;u<=200;u++)
 			{
 				//PORTD|=0x80;//(1<< PD7);
 				//PORTD^=0x40;//(1<< PD6 );
@@ -232,7 +233,7 @@ ISR(INT1_vect)
 				_delay_ms(5);
 			}
 
-			r=0x20 & PIND;
+			
 		}
 		//PORTD&=0x7F;
 		motor_2_OFF;
@@ -240,7 +241,7 @@ ISR(INT1_vect)
 
 		manual_mode_check;
 	}
-	a=ON;
+	AUTOMATIC_state=ON;
 
 
 }
@@ -260,7 +261,7 @@ int main(void)
 
 	b=4;
 
-	a=ON;
+	AUTOMATIC_state=ON;
 
 
 

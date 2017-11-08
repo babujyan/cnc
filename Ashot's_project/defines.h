@@ -15,8 +15,8 @@
 	#define motor_1_ON_OFF_DDR				DDRB
 	#define motor_1_dir_DDR					DDRB
 
-	#define motor_1_freq_DDR_pin			DDB5//1-->5
-	#define motor_1_ON_OFF_DDR_pin			DDB3//0-->3
+	#define motor_1_freq_DDR_pin			DDB3//1-->5
+	#define motor_1_ON_OFF_DDR_pin			DDB5//0-->3
 	#define motor_1_dir_DDR_pin				DDB4//2-->4
 
 	#define motor_1_freq_PORT				PORTB 
@@ -63,11 +63,11 @@
 	
 
 	#define shpindel_path_counter_VAR		2//
-	#define motor_1_hz						1000 // hz anpayman zuyg 
+	#define motor_1_hz						1000 // anpayman zuyg 
 	#define motor_1_code_hz					((10000/(motor_1_hz*2))-1)
 	
-	#define motor_2_hz						100  //hz  anpayman 20 bajanvox 
+	#define motor_2_hz						100  // anpayman zuyg 
 	#define motor_2_code_hz					((10000/(motor_2_hz*2))-1)
-	#define time_sec						6 //seconds 
+	#define time_sec						6 //seconds
 	#define motor_1_work_time				2*time_sec*motor_1_hz
 #endif //DEFINES

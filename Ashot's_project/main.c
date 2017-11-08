@@ -163,6 +163,7 @@ ISR (TIMER0_COMPA_vect)
 					//PORTB^=0x01;  // 8 pb0 (1<< PB0 ) // PORTD^=0x40;//(1<< PD6
 					motor_2_ON;
 					motor_2_Inverse;
+					_delay_ms(motor_2_hz/20);
 					led = led_check; // 6 pd6 // pinb3 pin
 				}
 				//PORTB&=0x6B; // 8 pb0 - 11 pb3 // 9 pb1 - 13 pb5 // 1111 1100 <<----petqa poxel
@@ -187,7 +188,8 @@ ISR(INT1_vect)
 	motor_2_OFF;
 	//PORTB&=0xFE;
 	motor_1_OFF;
-
+	motor_1_dir_on;
+	motor_1_dir_inverse;
 
 	//manual_mode=0x08 & PORTD;
 	manual_mode=manual_mode_check;
@@ -237,6 +239,7 @@ ISR(INT1_vect)
 				//PORTB^=0x01;  // 8 pb0 (1<< PB0 ) // PORTD^=0x40;//(1<< PD6 
 				motor_2_ON;
 				motor_2_Inverse;
+				_delay_ms(motor_2_hz/20);
 				led = led_check; // 6 pd6 // pinb3 pin 
 			}
 			//PORTB&=0x6B; // 8 pb0 - 11 pb3 // 9 pb1 - 13 pb5 // 1111 1100 <<----petqa poxel

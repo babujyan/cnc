@@ -31,7 +31,8 @@ uint8_t			motor_2_counter_checker = 0;
 ISR (INT0_vect)
 {	
 	if(AUTOMATIC_state==ON)
-	{
+	{	
+		motor_1_dir_on;
 		battom1=ON;
 		j1=0;
 		//c=40960;//2560;
@@ -189,7 +190,7 @@ ISR(INT1_vect)
 	//PORTB&=0xFE;
 	motor_1_OFF;
 	motor_1_dir_on;
-	motor_1_dir_inverse;
+	//motor_1_dir_inverse;
 
 	//manual_mode=0x08 & PORTD;
 	manual_mode=manual_mode_check;
@@ -248,6 +249,7 @@ ISR(INT1_vect)
 			auto_correct = auto_correct_check; //12 pb4 --> 7 pd7 // pinb4 pin 12
 		}
 	}
+	motor_1_dir_on;
 	AUTOMATIC_state=ON;
 }
 
